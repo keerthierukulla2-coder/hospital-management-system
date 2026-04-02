@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Patients</h1>
+
+<form method="POST" action="{{ url_for('add_patient') }}" class="form-grid">
+  <input name="name" placeholder="Name" required>
+  <input name="age" type="number" placeholder="Age" required>
+  <input name="gender" placeholder="Gender" required>
+  <input name="disease" placeholder="Disease" required>
+  <input name="phone" placeholder="Phone" required>
+  <button type="submit">Add Patient</button>
+</form>
+
+<table>
+  <tr>
+    <th>ID</th><th>Name</th><th>Age</th><th>Gender</th><th>Disease</th><th>Phone</th><th>Action</th>
+  </tr>
+  {% for p in patients %}
+  <tr>
+    <td>{{ p["id"] }}</td>
+    <td>{{ p["name"] }}</td>
+    <td>{{ p["age"] }}</td>
+    <td>{{ p["gender"] }}</td>
+    <td>{{ p["disease"] }}</td>
+    <td>{{ p["phone"] }}</td>
+    <td><a href="{{ url_for('delete_patient', patient_id=p['id']) }}">Delete</a></td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

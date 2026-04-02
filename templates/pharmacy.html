@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Pharmacy</h1>
+
+<form method="POST" action="{{ url_for('add_medicine') }}" class="form-grid">
+  <input name="medicine_name" placeholder="Medicine Name" required>
+  <input name="quantity" type="number" placeholder="Quantity" required>
+  <input name="price" type="number" step="0.01" placeholder="Price" required>
+  <button type="submit">Add Medicine</button>
+</form>
+
+<table>
+  <tr>
+    <th>ID</th><th>Medicine</th><th>Quantity</th><th>Price</th><th>Action</th>
+  </tr>
+  {% for m in medicines %}
+  <tr>
+    <td>{{ m["id"] }}</td>
+    <td>{{ m["medicine_name"] }}</td>
+    <td>{{ m["quantity"] }}</td>
+    <td>{{ m["price"] }}</td>
+    <td><a href="{{ url_for('delete_medicine', medicine_id=m['id']) }}">Delete</a></td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

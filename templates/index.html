@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Welcome</h1>
+<p>This system manages patients, doctors, pharmacy, and administrative records.</p>
+
+<div class="cards">
+  <a class="card" href="{{ url_for('patients') }}">Patients</a>
+  <a class="card" href="{{ url_for('doctors') }}">Doctors</a>
+  <a class="card" href="{{ url_for('pharmacy') }}">Pharmacy</a>
+  <a class="card" href="{{ url_for('admins') }}">Admins</a>
+</div>
+{% endblock %}

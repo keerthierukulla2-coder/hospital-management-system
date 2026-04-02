@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Admin Records</h1>
+
+<form method="POST" action="{{ url_for('add_admin') }}" class="form-grid">
+  <input name="name" placeholder="Name" required>
+  <input name="role" placeholder="Role" required>
+  <input name="email" type="email" placeholder="Email" required>
+  <button type="submit">Add Admin</button>
+</form>
+
+<table>
+  <tr>
+    <th>ID</th><th>Name</th><th>Role</th><th>Email</th><th>Action</th>
+  </tr>
+  {% for a in admins %}
+  <tr>
+    <td>{{ a["id"] }}</td>
+    <td>{{ a["name"] }}</td>
+    <td>{{ a["role"] }}</td>
+    <td>{{ a["email"] }}</td>
+    <td><a href="{{ url_for('delete_admin', admin_id=a['id']) }}">Delete</a></td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

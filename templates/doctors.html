@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Doctors</h1>
+
+<form method="POST" action="{{ url_for('add_doctor') }}" class="form-grid">
+  <input name="name" placeholder="Name" required>
+  <input name="specialty" placeholder="Specialty" required>
+  <input name="phone" placeholder="Phone" required>
+  <input name="email" type="email" placeholder="Email" required>
+  <button type="submit">Add Doctor</button>
+</form>
+
+<table>
+  <tr>
+    <th>ID</th><th>Name</th><th>Specialty</th><th>Phone</th><th>Email</th><th>Action</th>
+  </tr>
+  {% for d in doctors %}
+  <tr>
+    <td>{{ d["id"] }}</td>
+    <td>{{ d["name"] }}</td>
+    <td>{{ d["specialty"] }}</td>
+    <td>{{ d["phone"] }}</td>
+    <td>{{ d["email"] }}</td>
+    <td><a href="{{ url_for('delete_doctor', doctor_id=d['id']) }}">Delete</a></td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}
